@@ -13,7 +13,7 @@ ma = Marshmallow(app)
 from models import Product
 from schemas import products_schema
 
-@app.route('/hello')
+@app.route('/')
 def hello():
     return "Hello World! I present to you an API"
 
