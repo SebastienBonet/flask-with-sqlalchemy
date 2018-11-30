@@ -1,7 +1,6 @@
 # wsgi.py
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from config import Config
-import pdb
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -17,8 +16,9 @@ from models import Product
 from schemas import products_schema, product_schema
 
 @app.route('/')
-def hello():
-    return "Hello World! I present to you an API"
+def home():
+    products = db.session.query(Product).all()
+    return render_template('home.html', products=products)
 
 @app.route('/products', methods=['GET'])
 def products():
